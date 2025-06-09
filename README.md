@@ -48,3 +48,7 @@ Future enhancements to the application could include:
 2. Binary File Support: Adding support for reading and writing binary files, which would enable the application to handle more complex data formats.
 3. Advanced File Operations: Implementing advanced file operations, such as file copying, moving, and deleting, which would further enhance the application's functionality.
    
+*OUTPUT*
+
+![Image](https://github.com/user-attachments/assets/62dbd414-d393-406b-a646-d5426e0cc409)
+
