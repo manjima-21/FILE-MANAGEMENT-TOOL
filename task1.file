@@ -1,0 +1,79 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+void writeFile(const string& filename, const string& text) {
+    ofstream fout(filename);
+    if (!fout) {
+        cout << "Oops! Can't open file for writing: " << filename << endl;
+        return;
+    }
+    fout << text;
+    fout.close();
+}
+void appendFile(const string& filename, const string& text) {
+    ofstream fout(filename, ios::app);
+    if (!fout) {
+        cout << "Oops! Can't open file for appending: " << filename << endl;
+        return;
+    }
+    fout << text;
+    fout.close();
+}
+void readFile(const string& filename) {
+    ifstream fin(filename);
+    if (!fin) {
+        cout << "Oops! Can't open file for reading: " << filename << endl;
+        return;
+    }
+    string line;
+    cout << "Contents of " << filename << ":\n";
+    while (getline(fin, line)) {
+        cout << line << endl;
+    }
+    fin.close();
+}
+int main() {
+    string fileName;
+    int choice;
+    string text;
+
+    cout << "Enter file name to work with: ";
+    cin >> fileName;
+
+    while (true) {
+        cout << "\nWhat do you want to do?\n";
+        cout << "1. Write to file (overwrite)\n";
+        cout << "2. Append to file\n";
+        cout << "3. Read file\n";
+        cout << "4. Exit\n";
+        cout << "Your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "Type the text you want to write (one line): ";
+                cin.ignore();  // to ignore leftover newline from previous input
+                getline(cin, text);
+                writeFile(fileName, text);
+                cout << "Done writing!\n";
+                break;
+            case 2:
+                cout << "Type the text you want to add (one line): ";
+                cin.ignore();
+                getline(cin, text);
+                appendFile(fileName, text);
+                cout << "Added to file!\n";
+                break;
+            case 3:
+                readFile(fileName);
+                break;
+            case 4:
+                cout << "Goodbye!\n";
+                return 0;
+            default:
+                cout << "Invalid choice, try again.\n";
+        }
+    }
+    return 0;
+}
